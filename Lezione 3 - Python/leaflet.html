@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	    <title>Quick Start - Leaflet</title>
+	    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+</head>
+<body>
+
+<div id="mapid" style="width: 600px; height: 400px;"></div>
+<script>
+	    var map = L.map('mapid').setView([51.505, -0.09], 13);
+	    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+    new L.Polyline([new L.LatLng(51.5, -0.09), new L.LatLng(51.4, -0.09), new L.LatLng(51.4, -0.19)], {color: 'red',weight: 3,opacity: 0.5,smoothFactor: 1}).addTo(map)
+
+</script>
+
+</body>
+</html>
