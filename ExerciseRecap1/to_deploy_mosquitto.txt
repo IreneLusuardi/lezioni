@@ -1,0 +1,46 @@
+
+# Open (MQTT) port on compute engine
+
+https://www.cloudsavvyit.com/4932/how-to-open-firewall-ports-on-a-gcp-compute-engine-instance/
+
+# ! Attenzione, la rete del Tamburini blocca il traffico in uscita sulla porta MQTT!!!
+
+
+# install on linux (compute engine) ##################################################################################
+# https://www.cloud.it/tutorial/come-installare-e-mettere-sicurezza-mosquitto-su-ubuntu-20-04.aspx
+
+sudo apt update -y && sudo apt install mosquitto mosquitto-clients -y
+#per scaricare il software della libreria mosquitto sulla macchina virtuale 1
+
+# check status
+
+sudo systemctl status mosquitto
+
+#start manually
+#per fare partire il broker su una determinata macchina
+sudo systemctl start mosquitto #-p 80 (porta 80)
+
+#autostart
+
+sudo systemctl enable mosquitto
+
+# configure user and password
+
+# add user 2
+
+sudo mosquitto_passwd -c /etc/mosquitto/passwd username
+
+#configure mosquitto to require authentication 3
+
+sudo nano /etc/mosquitto/conf.d/default.conf
+4
+listener 1883 0.0.0.0
+allow_anonymous false
+password_file /etc/mosquitto/passwd
+
+# restart
+5
+sudo systemctl restart mosquitto
+
+
+
